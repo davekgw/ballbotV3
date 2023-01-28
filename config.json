@@ -1,0 +1,16 @@
+{
+	"appName": "ballbotV3",
+	"botName": "ballbot",
+	"githubEmail": "iqbalsheila619@gmail.com",
+	"githubName": "bolaxd",
+	"developer": ["6285728625940"],
+	"owner": [],
+	"moderator": [],
+	"sessionName": "sessions",
+	"dbName": "database.json",
+	"isOnline": false,
+	"longQR": 60000,
+	"PORT": 3002,
+	"message": "Uptime Robot!!",
+	"router": "/"
+}
