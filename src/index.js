@@ -24,7 +24,7 @@ export default class Start {
 		Conn.Logger = Logger
 		Conn.developer = false
 		Conn.ev.on("connection.update", async (UPDATE) =>
-			new Connection(UPDATE).status(Conn, Start)
+			new Connection(UPDATE, MakeWASocket).status(Conn, Start)
 		);
 		Conn.ev.on("messages.upsert", async (UPDATE) => {
 			if (UPDATE.messages[0].key.fromMe) return

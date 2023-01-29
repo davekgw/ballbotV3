@@ -1,13 +1,11 @@
-import * as Logger from "../config/logger.config.js";
-import { DisconnectReason } from "baileys";
 import { Fake } from "../helper/fake.helper.js";
 import { Boom } from "@hapi/boom";
 
 export default class Connection {
-	constructor(UPDATE) {
+	constructor(UPDATE, MakeWASocket) {
 		this.error = UPDATE.lastDisconnect?.error;
 		this.connection = UPDATE.connection;
-		this.loggedOut = DisconnectReason.loggedOut;
+		this.loggedOut = MakeWASocket.DisconnectReason?.loggedOut;
 		this.statusCode = new Boom(this.error).output?.statusCode;
 	}
 	status ({ Func, Logger, config}, Start) {
@@ -19,6 +17,6 @@ export default class Connection {
 			console.log(Logger.AWAIT_KONEKSI);
 		else if (this.connection == "open")
 			console.warn(Logger.TERKONEK),
-			Func.sendteks(config.developer + "@s.whatsapp.net", Logger.TERKONEK, new Fake().fakeStatus("Notification"))
+			Func.sendteks(config.developer + "@s.whatsapp.net", Logger.TERKONEK, new Fake().fakeStatus("Notification"));
 	}
 }

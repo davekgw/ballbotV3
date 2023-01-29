@@ -17,8 +17,8 @@ class Main {
 			} else {
 				let teks = !Conn.developer ? `Apakah kamu yakin ingin Menghidupkan mode Maintenance Bot?\nMode ini dapat meningkatkan Ram dan Cache seiring perubahan File Plugins dan Ketika File tersebut di import`
 										: `Mode Maintenance sekarang aktif, apakah kamu ingin Mematikan nya?\nKonfirmasi button dibawah`
-				let but = !Conn.developer ? [["Aktifkan Mode", `.${Mek.command} yes`]]
-										: [["Konfirmasi", `.${Mek.command} yes`]]
+				let but = !Conn.developer ? [["Aktifkan Mode", `.${Mek.command} aktif`]]
+										: [["Konfirmasi", `.${Mek.command} mati`]]
 				Func.sendbutton(Mek.chat, teks, config.botName, but, Mek) 
 			}
 		}

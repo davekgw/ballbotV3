@@ -9,8 +9,8 @@ const start = new Start()
 
 function serverUptime(options = {}) {
 	let port = options.port || 8080;
-	let customURL = options.path ? options.path.toString() : "/";
-	let customResponse = options.message ? options.message.toString() : "200 OK!";
+	let customURL = start.config.router;
+	let customResponse = start.config.message.toString();
 	const request = async (req, res) => {
 		if (options.debug) console.log(`::debug:: [repl-uptime] => ${req.method.toLowerCase()} ${req.url}`);
 		if (req.url === customURL) {
@@ -26,7 +26,7 @@ function serverUptime(options = {}) {
 			let conf = new Start().config
 			conf.PORT += 1
 			await writeFileSync("config.json", JSON.stringify(conf, null, 2))
-			await serverUptime({ port: conf.PORT, message: conf.message, path: conf.router, debug: true });
+			await serverUptime({ port: conf.PORT, debug: true });
 		}, 5000)
 	});
 	server.listen(port, () => {
@@ -35,4 +35,4 @@ function serverUptime(options = {}) {
 		start.bot();
 	});
 }
-serverUptime({ port: start.config.PORT, message: start.config.message, path: start.config.router, debug: true });
+serverUptime({ port: start.config.PORT, debug: true });
