@@ -1,8 +1,7 @@
-import { jidDecode } from "baileys";
-
 export default class Simpl {
-	constructor(Conn){
-		this.conn = Conn
+	constructor(Conn, MakeWASocket){
+		this.Conn = Conn
+		this.Socket = MakeWASocket
 	}
 	/**
 	 * Ini adalah mentions yang digunakan unuk deteksi content yang terdafat @62xxxx
@@ -23,7 +22,7 @@ export default class Simpl {
 	 * Warning!!! jangan hapus WM anjing
 	*/
 	createJid(chat) {
-		let decode = jidDecode(chat)
+		let decode = this.Socket.jidDecode(chat)
 		if (/:\d+@/gi.test(chat)) return decode.user && decode.server && decode.user + '@' + decode.server || chat;
 		else return chat;
 	}
@@ -37,7 +36,7 @@ export default class Simpl {
 	 * Warning!!! jangan hapus WM anjing
 	*/
 	sendteks (chat, teks, quoted, options = {}) {
-		return this.conn.sendMessage(chat, { text: teks, ...options }, { quoted });
+		return this.Conn.sendMessage(chat, { text: teks, ...options }, { quoted });
 	}
 	/**
 	 * Ini send buku kontak yang di sederhanakan
@@ -50,7 +49,7 @@ export default class Simpl {
 	 * Warning!!! jangan hapus WM anjing
 	*/
 	sendkontak (chat, teks, arr = [...[satu = "", dua = "", tiga = ""]], quoted = '', opts = {}) {
-		return this.conn.sendMessage(chat, { contacts: { displayName: teks, contacts: arr.map(i => ({displayName: '', vcard: 'BEGIN:VCARD\n'+'VERSION:3.0\n'+'FN:'+i[0]+'\n'+'ORG:'+i[2]+';\n'+'TEL;type=CELL;type=VOICE;waid='+i[1]+':'+i[1]+'\n'+'END:VCARD' })) }, ...opts}, {quoted})
+		return this.Conn.sendMessage(chat, { contacts: { displayName: teks, contacts: arr.map(i => ({displayName: '', vcard: 'BEGIN:VCARD\n'+'VERSION:3.0\n'+'FN:'+i[0]+'\n'+'ORG:'+i[2]+';\n'+'TEL;type=CELL;type=VOICE;waid='+i[1]+':'+i[1]+'\n'+'END:VCARD' })) }, ...opts}, {quoted})
 	}
 	/**
 	 * send list message yang se abrek abrek di rubah jadi array simple
@@ -64,7 +63,7 @@ export default class Simpl {
 	 * Warning!!! jangan hapus WM anjing
 	*/
 	sendlist (chat, teks, foot, arr = [...[dis = '', id = '', des = '' ]], quoted = '') {
-		return this.conn.sendMessage(chat, { text: teks, footer: foot, title: null, buttonText: 'Click Here', sections: [{title: this.conn?.config?.botName, rows: arr.map(u => ({ title: u[0], rowId: u[1], description: u[2] })) }]}, { quoted })
+		return this.Conn.sendMessage(chat, { text: teks, footer: foot, title: null, buttonText: 'Click Here', sections: [{title: this.Conn?.config?.botName, rows: arr.map(u => ({ title: u[0], rowId: u[1], description: u[2] })) }]}, { quoted })
 	}
 	/**
 	 * send template message [ url button, call button, button reply, dan button copy otp ]
@@ -84,7 +83,7 @@ export default class Simpl {
 			else if (v[0] == "button") return ({ quickReplyButton: { displayText: v[1], id: v[2] }});
 			else if (v[0] == "otp") return ({ urlButton: { displayText: v[1], url: "https://www.whatsapp.com/otp/copy/"+v[2] }});
 		});
-		return this.conn.sendMessage(chat, { text: teks, footer: foot, templateButtons: tutu });
+		return this.Conn.sendMessage(chat, { text: teks, footer: foot, templateButtons: tutu });
 	}
 	/**
 	 * send button message yang di sederhanakan dengan 2 isi array [text, id]
@@ -98,6 +97,6 @@ export default class Simpl {
 	 * Warning!!! jangan hapus WM anjing
 	*/
 	sendbutton (chat, teks, foot, but = [...[content, id]], quoted = "", options = {}) {
-		return this.conn.sendMessage(chat, {text: teks, footer: foot, })
+		return this.Conn.sendMessage(chat, {text: teks, footer: foot, buttons: but.map(i => ({buttonId: i[1], buttonText: { displayText: i[0] }, type: 1})), headerType: 2,...options}, { quoted })
 	}
 }

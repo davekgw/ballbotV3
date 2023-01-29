@@ -19,7 +19,7 @@ export default class Start {
 		{ auth: state }
 		));
 		this.store?.bind(Conn.ev);
-		Conn.Func = new Simple(Conn);
+		Conn.Func = new Simple(Conn, MakeWASocket);
 		Conn.config = this.config;
 		Conn.Logger = Logger
 		Conn.developer = false
