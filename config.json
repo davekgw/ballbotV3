@@ -12,7 +12,7 @@
   "dbName": "database.json",
   "isOnline": false,
   "longQR": 60000,
-  "PORT": 3032,
+  "PORT": 3033,
   "message": "Uptime Robot!!",
   "router": "/"
 }
