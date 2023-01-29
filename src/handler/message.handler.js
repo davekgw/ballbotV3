@@ -14,7 +14,7 @@ export default class Message{
 	}
 	async received() {
 		if (this.Mek?.fromMe) return
-		// console.log(this.Mek);
+		console.log(this.Mek);
 		foldersPlugin.map(async ({ name }) => {
 			let files = readdirSync(join(rootPlugin, name));
 			for await (let file of files) {
@@ -27,6 +27,7 @@ export default class Message{
 					if (this.conn.developer) imporr = await import("../" + join("plugins", name, file) + "?version=" + Date.now())
 					else if (!this.conn.developer) imporr = await import("../" + join("plugins", name, file))
 					if (!imporr.default) continue;
+					console.log(imporr);
 					let plugin = new imporr.default(this.conn, this.Mek);
 					if (plugin.top && typeof plugin.top === "function") plugin.top()
 					if (plugin.mid && typeof plugin.mid === "function") {

@@ -1,6 +1,6 @@
 import * as Logger from "../config/logger.config.js";
 import { DisconnectReason } from "@adiwajshing/baileys";
-import Fake from "../helper/fake.helper.js";
+import { Fake } from "../helper/fake.helper.js";
 import { Boom } from "@hapi/boom";
 
 export default class Connection {

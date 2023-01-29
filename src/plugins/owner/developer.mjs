@@ -19,7 +19,7 @@ class Main {
 										: `Mode Maintenance sekarang aktif, apakah kamu ingin Mematikan nya?\nKonfirmasi button dibawah`
 				let but = !Conn.developer ? [["Aktifkan Mode", `.${Mek.command} yes`]]
 										: [["Konfirmasi", `.${Mek.command} yes`]]
-				Func.sendbutton(Mek.chat, teks, config.botName, but, m) 
+				Func.sendbutton(Mek.chat, teks, config.botName, but, Mek) 
 			}
 		}
 	}
