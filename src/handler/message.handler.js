@@ -2,10 +2,10 @@ import * as Logger from "../config/logger.config.js";
 import Mek from "./parser.handler.js";
 import { readdirSync } from "fs";
 import { join } from "path";
+import { format } from "util";
 
 let rootPlugin = join("src", "plugins");
 const foldersPlugin = readdirSync(rootPlugin, { withFileTypes: true }).filter(v => v.isDirectory());
-
 export default class Message{
 	constructor(UPDATE, Conn){
 		this.UPDATE = UPDATE;
@@ -14,20 +14,16 @@ export default class Message{
 	}
 	async received() {
 		if (this.Mek?.fromMe) return
+		if (/status@broadcast/.test(this.Mek?.chat)) return
 		console.log(this.Mek);
 		foldersPlugin.map(async ({ name }) => {
 			let files = readdirSync(join(rootPlugin, name));
 			for await (let file of files) {
 				try {
-					if (!this.Mek.isDev && this.conn.developer) {
-						if (this.Mek.command) this.conn.Func.sendteks(this.Mek.chat, this.conn.Logger.MODE_MAIN, this.Mek);
-						continue;
-					}
-					let imporr
-					if (this.conn.developer) imporr = await import("../" + join("plugins", name, file) + "?version=" + Date.now())
-					else if (!this.conn.developer) imporr = await import("../" + join("plugins", name, file))
+					if (!this.Mek.isDev && this.conn.developer) continue;
+					let path = this.conn.developer ? "../" + join("plugins", name, file) +  "?version=" + Date.now() : "../" + join("plugins", name, file)
+					let imporr = await import(path)
 					if (!imporr.default) continue;
-					console.log(imporr);
 					let plugin = new imporr.default(this.conn, this.Mek);
 					if (plugin.top && typeof plugin.top === "function") plugin.top()
 					if (plugin.mid && typeof plugin.mid === "function") {
@@ -36,10 +32,8 @@ export default class Message{
 					}
 				} catch(e) {
 					this.conn.Func.sendteks(this.conn.config.developer[0] + "@s.whatsapp.net", 
-					`*Error File : ${file}*\n` +
-					`*Oleh: @${this.Mek?.sender.split("@")[0]}*\n\n` +
-					`\`\`\`${format(e)}\`\`\``,
-					 { mentions: [this.Mek?.sender] }) 
+					`*Error File : ${file}*\n\n` +
+					`\`\`\`${await format(e)}\`\`\``) 
 				}
 			}
 		});
