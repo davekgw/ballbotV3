@@ -1,4 +1,4 @@
-import baileys from "@adiwajshing/baileys";
+import baileys from "baileys";
 const { getContentType, downloadContentFromMessage } = baileys;
 
 export default class Parser {

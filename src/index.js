@@ -1,5 +1,5 @@
 process.on("uncaughtException", console.error);
-import MakeWASocket, { useMultiFileAuthState } from "@adiwajshing/baileys";
+import MakeWASocket, { useMultiFileAuthState } from "baileys";
 import ConfigConnection, { LOG } from "./config/connection.config.js";
 import Connection from "./handler/connection.handler.js";
 import * as Logger from "./config/logger.config.js";

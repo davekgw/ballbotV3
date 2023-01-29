@@ -1,4 +1,4 @@
-import { jidDecode } from "@adiwajshing/baileys";
+import { jidDecode } from "baileys";
 
 export default class Simpl {
 	constructor(Conn){

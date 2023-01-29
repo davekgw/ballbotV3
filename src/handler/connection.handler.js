@@ -1,5 +1,5 @@
 import * as Logger from "../config/logger.config.js";
-import { DisconnectReason } from "@adiwajshing/baileys";
+import { DisconnectReason } from "baileys";
 import { Fake } from "../helper/fake.helper.js";
 import { Boom } from "@hapi/boom";
 
