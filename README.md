@@ -10,9 +10,10 @@ dan Berat Ram Bot ini ringan sekali...
 <img width="" src="https://img.shields.io/github/repo-size/bolaxd/ballbotV3?color=lightblue&label=Repo%20Size&style=for-the-badge&logo=appveyor">
 </p>
 
-> Minimal Star dulu untuk menggunakan Repository ini\nBot ini masih di development [ Jadi agak sabar yahh ]
-tetapi sistem dari bot ini sudah di optimalkan [ Tinggal Fitur ]
-karena Bot ini sebelumnya dimasukan ke Github dalam Mode private
+> Minimal Star dulu untuk menggunakan Repository ini.
+Bot ini masih di development [ Jadi agak sabar yahh ].
+tetapi sistem dari bot ini sudah di optimalkan [ Tinggal Fitur ].
+karena Bot ini sebelumnya dimasukan ke Github dalam Mode private.
 
 ### How to Install ?
 
