@@ -4,6 +4,7 @@ import { Simple, Message, Connection } from "./handler/index.js";
 import { readFileSync, readdirSync } from "fs";
 import { join } from "path";
 import ConfigConnection, { LOG } from "./config/connection.config.js";
+import "./config/cache.config.js";
 import * as Logger from "./config/logger.config.js";
 
 export default class Start{
