@@ -1,11 +1,12 @@
-import { createServer } from "node:http";
+import "./src/database/index.js";
+import { createServer } from "http";
 import { fileURLToPath } from "url";
-import Start from "./src/index.js";
 import { writeFileSync } from "fs";
 import path from "path";
+import Start from "./src/index.js";
 // import yargs from 'yargs'
 
-const start = new Start()
+const start = new Start();
 
 function serverUptime(options = {}) {
 	let port = options.port || 8080;
@@ -31,7 +32,7 @@ function serverUptime(options = {}) {
 	});
 	server.listen(port, () => {
 		console.clear();
-		console.log(`::debug:: [repl-uptime] => Server listening on port ${port}\nSilahkan Kunjungi Link Lokal dibawah ini:\nhttp://localhost:${port}`)
+		console.log(`::debug:: [repl-uptime] => Server listening on port ${port}\nSilahkan Kunjungi Link Lokal dibawah ini:\nhttp://localhost:${port}`);
 		start.bot();
 	});
 }

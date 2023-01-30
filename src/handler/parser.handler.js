@@ -1,7 +1,7 @@
 import baileys from "baileys";
 const { getContentType, downloadContentFromMessage } = baileys;
 
-export default class Parser {
+export class Parser {
 	constructor(Conn, U) {
 		if (!U) return console.log("Invalid Update message baileys");
 		if (!Conn) return console.log("Invalid connection from baileys");

@@ -1,4 +1,4 @@
-export default class Simpl {
+export class Simple {
 	constructor(Conn, MakeWASocket){
 		this.Conn = Conn
 		this.Socket = MakeWASocket
@@ -35,8 +35,8 @@ export default class Simpl {
 	 * Created BY bolaxd 
 	 * Warning!!! jangan hapus WM anjing
 	*/
-	sendteks (chat, teks, quoted, options = {}) {
-		return this.Conn.sendMessage(chat, { text: teks, ...options }, { quoted });
+	sendteks (chat, teks, q = "", options = {}) {
+		return this.Conn.sendMessage(chat, { text: teks, ...options }, { quoted: q });
 	}
 	/**
 	 * Ini send buku kontak yang di sederhanakan

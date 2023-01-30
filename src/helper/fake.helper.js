@@ -15,7 +15,7 @@ export class Fake {
 		return {
 			key: {
 				remoteJid: "status@broadcast",
-				participant: "0@whatsapp.net",
+				participant: "0@s.whatsapp.net",
 			},
 			message: {
 				orderMessage: {
@@ -25,7 +25,7 @@ export class Fake {
 					message: content,
 					orderTitle:``,
 					thumbnail,
-					sellerJid:"0@whatsapp.net"
+					sellerJid:"0@s.whatsapp.net"
 				}
 			}
 		}

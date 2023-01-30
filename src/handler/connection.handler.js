@@ -1,7 +1,7 @@
 import { Fake } from "../helper/fake.helper.js";
 import { Boom } from "@hapi/boom";
 
-export default class Connection {
+export class Connection {
 	constructor(UPDATE, MakeWASocket) {
 		this.error = UPDATE.lastDisconnect?.error;
 		this.connection = UPDATE.connection;
@@ -17,6 +17,6 @@ export default class Connection {
 			console.log(Logger.AWAIT_KONEKSI);
 		else if (this.connection == "open")
 			console.warn(Logger.TERKONEK),
-			Func.sendteks(config.developer + "@s.whatsapp.net", Logger.TERKONEK, new Fake().fakeStatus("Notification"));
+			Func.sendteks(config.developer + "@s.whatsapp.net", Logger.TERKONEK, new Fake().fakeStatus("Notification..."));
 	}
 }
